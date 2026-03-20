@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wrexham: The Final Stretch — v4</title>
+  <meta name="theme-color" content="#C8102E" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+    :root {
+      --wrexham-red: #C8102E;
+      --wrexham-red-dark: #A10C26;
+      --wrexham-black: #111111;
+      --wrexham-white: #FFFFFF;
+      --panel: #F8F5F2;
+      --panel-2: #FFF8F1;
+      --text: #1A1A1A;
+      --muted: #5E5854;
+      --line: rgba(0,0,0,.07);
+      --gold: #C6A45D;
+      --green-bg: #E7F7EB;
+      --amber-bg: #FFF2D5;
+      --red-bg: #FDE3E7;
+      --radius-xl: 22px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --shadow: 0 10px 28px rgba(0,0,0,.14);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 12pt;
+      color: var(--text);
+      background: linear-gradient(180deg, #cf1737 0%, #b50f2c 32%, #191919 100%);
+    }
+    .wrap {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 14px 12px 42px;
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 16px;
+      color: #fff;
+      background: linear-gradient(155deg, #db1e40 0%, #c8102e 42%, #960f26 74%, #171717 100%);
+      box-shadow: 0 18px 38px rgba(0,0,0,.22);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(120deg, rgba(255,255,255,.03), rgba(255,255,255,.03) 12px, transparent 12px, transparent 28px);
+      pointer-events: none;
+    }
+    .hero-top, h1, .hero-sub, .hero-lead { position: relative; z-index: 1; }
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.18);
+    }
+    .hero-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #fff;
+      border: 2px solid rgba(255,255,255,.78);
+      box-shadow: 0 6px 14px rgba(0,0,0,.2);
+      flex: 0 0 60px;
+    }
+    .hero-badge img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 31px;
+      line-height: 1.02;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      max-width: 10ch;
+    }
+    .hero-sub {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255,255,255,.9);
+      font-weight: 700;
+      max-width: 34ch;
+    }
+    .hero-lead {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.5;
+      color: #fff7ef;
+      max-width: 31ch;
+    }
+    .section {
+      margin-top: 14px;
+      border-radius: var(--radius-xl);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .section.dark {
+      background: linear-gradient(180deg, #231d1e 0%, #141213 100%);
+      color: #fff;
+    }
+    .section-inner { padding: 16px; }
+    .eyebrow {
+      margin: 0 0 6px;
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--wrexham-red-dark);
+    }
+    .dark .eyebrow { color: #f1d79a; }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.12;
+      font-weight: 800;
+    }
+    .subtext {
+      margin: 0;
+      font-size: 11pt;
+      line-height: 1.58;
+      color: var(--muted);
+    }
+    .dark .subtext { color: rgba(255,255,255,.82); }
+    .supporter-note-top {
+      background: linear-gradient(180deg, #fff6ea 0%, #f2e8de 100%);
+      border-left: 5px solid var(--wrexham-red);
+    }
+    .quote {
+      margin: 0;
+      font-size: 12pt;
+      line-height: 1.65;
+      color: #5d111e;
+    }
+    .team-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0 14px;
+    }
+    .tab-btn {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      border-radius: 18px;
+      padding: 10px 8px 12px;
+      cursor: pointer;
+      font: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 104px;
+      text-align: center;
+    }
+    .tab-btn.active {
+      background: linear-gradient(180deg, rgba(200,16,46,.98), rgba(145,16,37,.98));
+      border-color: rgba(255,255,255,.18);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.12), 0 8px 18px rgba(0,0,0,.22);
+    }
+    .team-crest {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    }
+    .team-crest img { width: 78%; height: 78%; object-fit: contain; display: block; }
+    .team-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10.5pt;
+      font-weight: 800;
+      color: var(--wrexham-red-dark);
+      background: #fff;
+    }
+    .team-label { font-size: 10.2pt; line-height: 1.25; font-weight: 700; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    .fixture-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .fixture-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .fixture-date {
+      font-size: 10pt;
+      color: rgba(255,255,255,.72);
+      font-weight: 700;
+    }
+    .fixture-opponent {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #fff;
+      margin: 2px 0 0;
+      line-height: 1.35;
+    }
+    .fixture-venue {
+      font-size: 10.2pt;
+      color: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.07);
+      padding: 5px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .result-control {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .result-control button {
+      font: inherit;
+      font-size: 10.5pt;
+      font-weight: 700;
+      border-radius: 999px;
+      border: none;
+      padding: 10px 8px;
+      cursor: pointer;
+      background: rgba(255,255,255,.1);
+      color: #fff;
+    }
+    .result-control button.active.win { background: var(--green-bg); color: #165f35; }
+    .result-control button.active.draw { background: var(--amber-bg); color: #875700; }
+    .result-control button.active.loss { background: var(--red-bg); color: #a12030; }
+    .fixture-meta {
+      margin-top: 10px;
+      font-size: 10.2pt;
+      color: rgba(255,255,255,.78);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .summary-card {
+      border-radius: 18px;
+      padding: 14px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .summary-card.primary {
+      background: linear-gradient(180deg, #fff7ee 0%, #fff0df 100%);
+      border-color: rgba(200,16,46,.14);
+    }
+    .summary-label {
+      font-size: 10pt;
+      color: #7c6d68;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .summary-value {
+      font-size: 25px;
+      line-height: 1.05;
+      font-weight: 800;
+      color: var(--wrexham-red-dark);
+      margin-bottom: 5px;
+    }
+    .summary-small { font-size: 10.5pt; color: var(--muted); line-height: 1.45; }
+    .table-shell {
+      margin-top: 14px;
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; min-width: 320px; }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      font-size: 10.5pt;
+      white-space: nowrap;
+    }
+    th { background: #fbf3ec; color: #6f1b29; font-weight: 700; }
+    .method-copy p, .utility-copy p {
+      margin: 0 0 12px;
+      font-size: 11pt;
+      line-height: 1.58;
+      color: var(--muted);
+    }
+    .utility-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .utility-actions button {
+      font: inherit;
+      font-weight: 700;
+      border-radius: 999px;
+      border: none;
+      padding: 12px 14px;
+      cursor: pointer;
+      background: var(--wrexham-red);
+      color: #fff;
+    }
+    .utility-actions button.secondary {
+      background: #efe7df;
+      color: #5b211f;
+    }
+    .small-note {
+      margin-top: 10px;
+      font-size: 10.3pt;
+      color: rgba(255,255,255,.72);
+      line-height: 1.5;
+    }
+    .footer-note {
+      text-align: center;
+      color: rgba(255,255,255,.72);
+      font-size: 10.3pt;
+      margin-top: 16px;
+    }
+    .donate-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: inline-block;
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+    .donate-btn img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.2s ease;
+    }
+    .donate-btn .coin-hover { opacity: 0; }
+    .donate-btn:hover .coin-normal { opacity: 0; }
+    .donate-btn:hover .coin-hover { opacity: 1; }
+    .donate-joke {
+      margin: 16px auto 0;
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--wrexham-red-dark);
+      max-width: 32ch;
+    }
+    .donate-section { margin-bottom: 0; }
+    @media (min-width: 640px) {
+      .wrap { padding: 18px 16px 48px; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .utility-actions { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 38px; max-width: none; }
+      .hero-sub, .hero-lead { max-width: 42ch; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="kicker">Supporter Edition</div>
+        <div class="hero-badge"><img src="custom-supporter-icon-512.png" alt="Custom supporter icon" /></div>
+      </div>
+      <h1>Wrexham: The Final Stretch (Squeaky bum time)</h1>
+      <p class="hero-lead">Make the calls, watch the table move, and ride the dream toward promotion.<br><strong>Beat the AI predictions.</strong></p>
+    </header>
+
+    <section class="section supporter-note-top">
+      <div class="section-inner">
+        <p class="eyebrow">Supporter note</p>
+        <p class="quote">For the supporters already doing the math in their heads, dreaming of promotion, and feeling every twist long before the whistle goes.</p>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="section-inner">
+        <p class="eyebrow">Make your calls</p>
+        <h2>Tap a team badge and choose your match result for the remaining games</h2>
+        <p class="subtext">Press the Projected table icon to see how your match results change the final table</p>
+        <p class="subtext">The current picks are the AI predictions of the Top 4 Teams in the Hunt<br>Clearly there are some major hallucinations going on. Wrexham finishing in 7th with 73 points. I don’t think so.</p>
+        <div id="tabs" class="team-tabs"></div>
+        <div id="panels"></div>
+        <p class="small-note">Tip: if two tracked teams play each other, changing one result updates the other team’s matching fixture too.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="eyebrow">Quick glance</p>
+        <h2>Where the table sits</h2>
+        <p class="subtext">Predictions after your picks.</p>
+        <div id="summaryCards" class="summary-grid"></div>
+        <div class="table-shell">
+          <div class="table-scroll" id="finalTableCard"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner method-copy">
+        <h2>The AI methodology</h2>
+        <p>AI compared each team’s current average points per game with the opponent’s average points per game, then adjusted slightly for home and away matches.</p>
+        <p>If the edge looked clear, AI called a win or loss. If it looked tight, AI called a draw.</p>
+        <p>Then AI converted those picks into standard football points — 3 for a win, 1 for a draw, 0 for a loss — and rolled them into the projected final table.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner utility-copy">
+        <p class="eyebrow">Save and reset</p>
+        <h2>Keep your version or start over</h2>
+        <div class="utility-actions">
+          <button type="button" onclick="resetAll()">Reset to the AI predictions</button>
+          <button type="button" class="secondary" onclick="clearSaved()">Future (share my predictions button)</button>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section donate-section">
+      <div class="section-inner" style="text-align:center; padding: 24px 16px;">
+        <p class="eyebrow" style="color: var(--wrexham-red-dark);">Support the project</p>
+        <h2 style="margin-bottom: 16px;">Enjoyed the app?</h2>
+        <form action="https://www.paypal.com/donate" method="post" target="_top" style="display:inline-block;">
+          <input type="hidden" name="business" value="jame123jcp@hotmail.com" />
+          <input type="hidden" name="item_name" value="Because Rob McElhenney told him there was a £20 million stadium grant over there." />
+          <input type="hidden" name="currency_code" value="GBP" />
+          <button type="submit" class="donate-btn" aria-label="Donate via PayPal">
+            <img class="coin-normal" src="Conis (1).png" alt="Donate" />
+            <img class="coin-hover" src="Conis (2).png" alt="Donate" />
+          </button>
+        </form>
+        <p class="donate-joke">Why did Ryan Reynolds cross the road?</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const APPDATA = {
+      currentPoints: {
+        "Wrexham": 60,
+        "Southampton": 57,
+        "Derby County": 54,
+        "Hull City": 63
+      },
+      otherTotals: {
+        "Coventry City": 93,
+        "Ipswich Town": 85,
+        "Middlesbrough": 85,
+        "Millwall": 82
+      },
+      fixtures: {
+        "Wrexham": [
+          ["Sat, Mar 21", "Sheffield United", "Away", "D"],
+          ["Fri, Apr 3", "West Bromwich Albion", "Away", "W"],
+          ["Tue, Apr 7", "Southampton", "Home", "D"],
+          ["Sun, Apr 12", "Birmingham City", "Away", "D"],
+          ["Sat, Apr 18", "Stoke City", "Home", "W"],
+          ["Tue, Apr 21", "Oxford United", "Away", "W"],
+          ["Sat, Apr 25", "Coventry City", "Away", "L"],
+          ["Sat, May 2", "Middlesbrough", "Home", "D"]
+        ],
+        "Southampton": [
+          ["March 2026", "Norwich City", "Home", "W"],
+          ["March 2026", "West Bromwich Albion", "Away", "W"],
+          ["March 2026", "Coventry City", "Away", "L"],
+          ["March 2026", "Oxford United", "Home", "W"],
+          ["April 2026", "Ipswich Town", "Home", "D"],
+          ["April 2026", "Wrexham", "Away", "D"],
+          ["April 2026", "Derby County", "Home", "D"],
+          ["April 2026", "Swansea City", "Away", "D"],
+          ["April 2026", "Bristol City", "Home", "W"],
+          ["April 2026", "Blackburn Rovers", "Home", "W"],
+          ["May 2026", "Preston North End", "Away", "D"]
+        ],
+        "Derby County": [
+          ["Mar 21, 2026", "Birmingham City", "Home", "W"],
+          ["Apr 3, 2026", "Coventry City", "Away", "L"],
+          ["Apr 6, 2026", "Stoke City", "Home", "W"],
+          ["Apr 11, 2026", "Southampton", "Away", "D"],
+          ["Apr 18, 2026", "Oxford United", "Home", "W"],
+          ["Apr 21, 2026", "Norwich City", "Away", "D"],
+          ["Apr 25, 2026", "Queens Park Rangers", "Away", "D"],
+          ["May 2, 2026", "Sheffield United", "Home", "W"]
+        ],
+        "Hull City": [
+          ["Mar 21, 2026", "Sheffield Wednesday", "Home", "W"],
+          ["Apr 3, 2026", "Oxford United", "Away", "W"],
+          ["Apr 6, 2026", "Coventry City", "Home", "D"],
+          ["Apr 11, 2026", "Sheffield United", "Away", "D"],
+          ["Apr 18, 2026", "Birmingham City", "Home", "W"],
+          ["Apr 22, 2026", "Leicester City", "Away", "W"],
+          ["Apr 25, 2026", "Charlton Athletic", "Away", "D"],
+          ["May 2, 2026", "Norwich City", "Home", "W"]
+        ]
+      },
+      teamOrder: ["Wrexham", "Southampton", "Derby County", "Hull City"],
+      teamLogos: {
+        "Wrexham": "wrexham-badge-128.png",
+        "Southampton": "southampton-badge-128.png",
+        "Derby County": "derby-badge-128.png",
+        "Hull City": "hull-badge-128.png",
+        "Projected Table": "projected-table-badge-128.png"
+      },
+      shortNames: {
+        "Wrexham": "WXM",
+        "Southampton": "SOU",
+        "Derby County": "DER",
+        "Hull City": "HUL",
+        "Projected Table": "TAB"
+      }
+    };
+
+    const STORAGEKEY = 'runinroomv4';
+    const POINTS = { W: 3, D: 1, L: 0 };
+    const RESULTLABEL = { W: 'Win', D: 'Draw', L: 'Loss' };
+    const REVERSE = { W: 'L', D: 'D', L: 'W' };
+    const tabsEl = document.getElementById('tabs');
+    const panelsEl = document.getElementById('panels');
+    const summaryEl = document.getElementById('summaryCards');
+    const finalTableCard = document.getElementById('finalTableCard');
+    const panelNames = [...APPDATA.teamOrder, 'Projected Table'];
+
+    function loadState() {
+      const raw = localStorage.getItem(STORAGEKEY);
+      if (raw) {
+        try { return JSON.parse(raw); } catch (e) {}
+      }
+      const base = {};
+      APPDATA.teamOrder.forEach(team => base[team] = APPDATA.fixtures[team].map(r => r[3]));
+      return base;
+    }
+
+    let state = loadState();
+
+    function saveState() {
+      localStorage.setItem(STORAGEKEY, JSON.stringify(state));
+    }
+
+    function teamProjectedTotal(team) {
+      return APPDATA.currentPoints[team] + state[team].reduce((sum, r) => sum + POINTS[r], 0);
+    }
+
+    function standingsData() {
+      const arr = Object.entries(APPDATA.otherTotals).map(([team, pts]) => ({ team, pts }));
+      APPDATA.teamOrder.forEach(team => arr.push({ team, pts: teamProjectedTotal(team) }));
+      arr.sort((a, b) => b.pts - a.pts || a.team.localeCompare(b.team));
+      return arr.map((r, i) => ({ rank: i + 1, team: r.team, pts: r.pts }));
+    }
+
+    function ordinal(n) {
+      const s = ['th', 'st', 'nd', 'rd'];
+      const v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+
+    function renderSummary() {
+      const standings = standingsData();
+      const ranks = Object.fromEntries(standings.map(r => [r.team, r.rank]));
+      const teams = APPDATA.teamOrder.map(team => ({ team, pts: teamProjectedTotal(team), rank: ranks[team] }));
+      teams.sort((a, b) => a.rank - b.rank || b.pts - a.pts);
+      summaryEl.innerHTML = teams.map((item, index) => `
+        <div class="summary-card ${index === 0 ? 'primary' : ''}">
+          <div class="summary-label">${item.team}</div>
+          <div class="summary-value">${item.pts}</div>
+          <div class="summary-small">Projected points total<br>Likely finish: ${ordinal(item.rank)}</div>
+        </div>
+      `).join('');
+
+      const standingRows = standings.map(r => `
+        <tr>
+          <td>${r.rank}</td>
+          <td>${r.team}</td>
+          <td>${r.pts}</td>
+        </tr>
+      `).join('');
+      finalTableCard.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Pts</th>
+            </tr>
+          </thead>
+          <tbody>${standingRows}</tbody>
+        </table>
+      `;
+    }
+
+    function crestHTML(name) {
+      return `
+        <span class="team-crest">
+          <img src="${APPDATA.teamLogos[name]}" alt="${name} crest" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <span class="team-fallback" style="display:none;">${APPDATA.shortNames[name]}</span>
+        </span>
+      `;
+    }
+
+    function renderTabs() {
+      tabsEl.innerHTML = panelNames.map((name, i) => `
+        <button class="tab-btn ${i === 0 ? 'active' : ''}" onclick="showTab(${i})">
+          ${crestHTML(name)}
+          <span class="team-label">${name}</span>
+        </button>
+      `).join('');
+    }
+
+    function resultButtons(team, idx) {
+      return ['W', 'D', 'L'].map(code => `
+        <button type="button" class="${state[team][idx] === code ? 'active ' : ''}${code === 'W' ? 'win' : code === 'D' ? 'draw' : 'loss'}" onclick="setResult('${team.replace(/'/g, "\\'")}', ${idx}, '${code}')">${RESULTLABEL[code]}</button>
+      `).join('');
+    }
+
+    function syncLinkedFixture(team, idx, code) {
+      const row = APPDATA.fixtures[team][idx];
+      const opponent = row[1];
+      if (!APPDATA.teamOrder.includes(opponent)) return;
+      const oppIdx = APPDATA.fixtures[opponent].findIndex(r => r[1] === team);
+      if (oppIdx === -1) return;
+      state[opponent][oppIdx] = REVERSE[code];
+    }
+
+    function renderPanels() {
+      let html = '';
+      APPDATA.teamOrder.forEach((team, panelIndex) => {
+        let running = APPDATA.currentPoints[team];
+        const cards = APPDATA.fixtures[team].map((row, idx) => {
+          const pts = POINTS[state[team][idx]];
+          running += pts;
+          return `
+            <div class="fixture-card">
+              <div class="fixture-top">
+                <div>
+                  <div class="fixture-date">${row[0]}</div>
+                  <div class="fixture-opponent">${row[1]}</div>
+                </div>
+                <div class="fixture-venue">${row[2]}</div>
+              </div>
+              <div class="result-control">${resultButtons(team, idx)}</div>
+              <div class="fixture-meta">
+                <span>Predicted points: ${pts}</span>
+                <span>Projected total: ${running}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+        const total = state[team].reduce((sum, r) => sum + POINTS[r], 0);
+        const note = team === 'Southampton' ? '<p class="small-note">Southampton dates are shown by month because the original schedule text exposed month labels rather than full calendar dates.</p>' : '';
+        html += `
+          <section class="tab-panel ${panelIndex === 0 ? 'active' : ''}">
+            ${cards}
+            <div class="fixture-card">
+              <div class="fixture-opponent">Total predicted points: ${total}</div>
+              <div class="fixture-meta"><span>Current points: ${APPDATA.currentPoints[team]}</span><span>Projected finish total: ${APPDATA.currentPoints[team] + total}</span></div>
+            </div>
+            ${note}
+          </section>
+        `;
+      });
+      html += `
+        <section class="tab-panel">
+          <div class="fixture-card">
+            <div class="fixture-opponent">Projected table</div>
+            <div class="fixture-date">See the Quick Glance section below for the live table.</div>
+          </div>
+        </section>
+      `;
+      panelsEl.innerHTML = html;
+    }
+
+    function rerender() {
+      saveState();
+      renderSummary();
+      renderPanels();
+    }
+
+    function showTab(i) {
+      document.querySelectorAll('.tab-btn').forEach((b, idx) => b.classList.toggle('active', idx === i));
+      document.querySelectorAll('.tab-panel').forEach((p, idx) => p.classList.toggle('active', idx === i));
+    }
+
+    function setResult(team, idx, code) {
+      state[team][idx] = code;
+      syncLinkedFixture(team, idx, code);
+      const activeIndex = [...document.querySelectorAll('.tab-panel')].findIndex(p => p.classList.contains('active'));
+      rerender();
+      showTab(activeIndex < 0 ? 0 : activeIndex);
+    }
+
+    function resetAll() {
+      APPDATA.teamOrder.forEach(team => state[team] = APPDATA.fixtures[team].map(r => r[3]));
+      rerender();
+      showTab(0);
+    }
+
+    function clearSaved() {
+      localStorage.removeItem(STORAGEKEY);
+      resetAll();
+    }
+
+    renderTabs();
+    rerender();
+  </script>
+</body>
+</html>
