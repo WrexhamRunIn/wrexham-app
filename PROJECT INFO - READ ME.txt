@@ -1,0 +1,157 @@
+==============================================================
+  WREXHAM: THE FINAL STRETCH — PROJECT REFERENCE FILE
+  Last updated: March 2026 (v10 — PWA home screen icon added)
+==============================================================
+
+This file tells you everything you need to know about this project
+in plain language. Keep it safe.
+
+
+--------------------------------------------------------------
+  WHAT THIS PROJECT IS
+--------------------------------------------------------------
+
+A web app for Wrexham AFC supporters.
+
+It lets you tap each team's badge, pick your own match results
+for the remaining games, and watch the projected final league
+table update live based on your picks.
+
+The four teams tracked are:
+  - Wrexham
+  - Southampton
+  - Derby County
+  - Hull City
+
+The app also shows the AI's own predicted results so you can
+compare yours against it.
+
+
+--------------------------------------------------------------
+  YOUR LIVE WEBSITE
+--------------------------------------------------------------
+
+  https://wrexhamrunin.github.io/wrexham-app/
+
+Anyone in the world can open that link. No login needed.
+It works on phones, tablets and computers.
+
+If you ever share the app, that is the link to give people.
+
+
+--------------------------------------------------------------
+  YOUR ACCOUNTS
+--------------------------------------------------------------
+
+GITHUB  (this is where the website is hosted — it's free)
+  Website:   https://github.com
+  Username:  WrexhamRunIn
+  The repo:  https://github.com/WrexhamRunIn/wrexham-app
+  NOTE: Store your GitHub password somewhere safe.
+        GitHub Pages (the hosting) is completely free.
+
+PAYPAL  (this is where donate money goes)
+  Email used:  jame123jcp@hotmail.com
+  When someone clicks the donate coin button, PayPal will
+  receive the donation and send it to that email.
+  No business account is needed — your personal PayPal works.
+
+
+--------------------------------------------------------------
+  THE DONATE BUTTON
+--------------------------------------------------------------
+
+  Button image:   Coin (1).png  (normal state)
+                  Coin (2).png  (hover state — changes on mouseover)
+
+  Text under button:
+    "Why did Ryan Reynolds cross the road?"
+
+  Text shown on the PayPal payment page:
+    "Because Rob McElhenney told him there was a
+     £20 million stadium grant over there."
+
+  Donations go to:  jame123jcp@hotmail.com
+
+
+--------------------------------------------------------------
+  FILES IN THIS FOLDER
+--------------------------------------------------------------
+
+  wrexham_final_stretch_v10.html   — THE MAIN APP FILE
+                                     This is the whole website.
+                                     Everything runs from here.
+
+  manifest.json                    — PWA Web App Manifest
+                                     Tells Android what icon and name to
+                                     use when adding to home screen.
+
+  1 James Ryan Icon.png            — Home screen icon (Android & iOS)
+                                     Shown when user taps "Add to Home
+                                     Screen" on their phone.
+
+  Coin (1).png                     — Donate button (normal)
+  Coin (2).png                     — Donate button (hover)
+  wrexham-badge-128.png            — Wrexham badge
+  southampton-badge-128.png        — Southampton badge
+  derby-badge-128.png              — Derby County badge
+  hull-badge-128.png               — Hull City badge
+  projected-table-badge-128.png    — Projected Table icon
+  custom-supporter-icon-512.png    — Header badge icon
+
+  PROJECT INFO - READ ME.txt       — This file
+
+
+--------------------------------------------------------------
+  HOW TO UPDATE THE APP IN THE FUTURE
+--------------------------------------------------------------
+
+If you want to change anything (fixtures, points, text etc):
+  1. Edit  wrexham_final_stretch_v10.html  on your computer
+  2. Go to:  https://github.com/WrexhamRunIn/wrexham-app
+  3. Click on the file name in the list
+  4. Click the pencil icon (Edit this file)
+  5. Paste in the new content
+  6. Click  "Commit changes"
+  7. Wait 1–2 minutes — your live site updates automatically
+
+OR — ask AI to do it for you. Just open VS Code, go to the
+Wrexham project folder, and ask.
+
+
+--------------------------------------------------------------
+  HOW TO CHANGE THE PAYPAL EMAIL IN THE FUTURE
+--------------------------------------------------------------
+
+Open  wrexham_final_stretch_v10.html  and find this line:
+
+  <input type="hidden" name="business" value="jame123jcp@hotmail.com" />
+
+Change the email address there to whatever you want,
+then re-upload to GitHub as described above.
+
+
+--------------------------------------------------------------
+  WHAT TECHNOLOGY THIS USES
+--------------------------------------------------------------
+
+  - Plain HTML, CSS and JavaScript (no app, no install needed)
+  - GitHub Pages  (free website hosting by Microsoft/GitHub)
+  - PayPal Donate button  (standard PayPal donation form)
+  - Google Fonts  (Open Sans — loaded from the internet)
+
+There is no database. No server costs. No monthly fees.
+Everything runs in the visitor's browser.
+
+
+--------------------------------------------------------------
+  QUICK SUMMARY IN ONE SENTENCE
+--------------------------------------------------------------
+
+You have a free Wrexham supporter web app, hosted on GitHub
+under your WrexhamRunIn account, with a PayPal donate button
+that sends money to jame123jcp@hotmail.com, live at:
+
+  https://wrexhamrunin.github.io/wrexham-app/
+
+==============================================================
